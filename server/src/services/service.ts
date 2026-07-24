@@ -1,4 +1,4 @@
-import { GoogleGenAI, Type } from "@google/genai";
+import { GoogleGenAI, Language, Type } from "@google/genai";
 
 const ai = new GoogleGenAI({
   apiKey: process.env.GOOGLE_GEMINI!,
@@ -43,6 +43,9 @@ Return ONLY JSON.
         type: Type.OBJECT,
 
         properties: {
+          language : { 
+            type: Type.NUMBER,
+          },
           score: {
             type: Type.NUMBER,
           },
