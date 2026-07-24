@@ -4,7 +4,12 @@ import { BACKEND_URL } from "../config";
 import { Copy } from "lucide-react";
 import axios from "axios";
 
-export function CodePart() {
+interface CodePartProps{
+  setReview: React.Dispatch<React.SetStateAction<any>>;
+  setLoading: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export function CodePart({ setReview, setLoading}:CodePartProps) {
 
 
   const copyCode = async () => {
@@ -22,7 +27,8 @@ export function CodePart() {
     const res = await axios.post(`${BACKEND_URL}/ai/get-response`, {
       code
     })
-    console.log(res)
+    setReview(res.data.response)
+    setLoading(false);
   }
 
   return (
